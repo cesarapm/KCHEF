@@ -1,0 +1,21 @@
+{
+    "id": 15,
+    "status": "completado",
+    "prospect": {
+        "id": 16,
+        "name": null,
+        "email": "geoapm@hotmail.com",
+        "phone": "+524445087305"
+    },
+    "assigned_to": {
+        "id": null,
+        "name": null,
+        "email": null
+    },
+    "dates": {
+        "started_at": null,
+        "completed_at": "2026-11-11T03:08:15.000000Z",
+        "created_at": "2026-11-11T03:03:41.000000Z",
+        "updated_at": "2026-11-11T03:08:15.000000Z"
+    }
+}

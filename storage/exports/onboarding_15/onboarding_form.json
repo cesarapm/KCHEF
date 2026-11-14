@@ -1,0 +1,43 @@
+{
+    "id": 4,
+    "onboarding_id": 15,
+    "primary_clients": "[\"dsa\",\"dsa\"]",
+    "start_date": "2026-11-27T06:00:00.000000Z",
+    "household_address": "saddsa",
+    "number_of_adults": 2,
+    "number_of_kids": 2,
+    "kids_ages": "2 2",
+    "household_goals": [
+        "Ahorrar tiempo",
+        "Ganar músculo"
+    ],
+    "household_goals_other": null,
+    "dietary_preferences": [
+        "Mediterráneo"
+    ],
+    "dietary_preferences_other": null,
+    "nutrition_preferences": [
+        "Carnes magras",
+        "Productos orgánicos"
+    ],
+    "nutrition_preferences_other": null,
+    "foods_to_avoid": [
+        "32",
+        "32"
+    ],
+    "favorite_cuisines": [
+        "Francesa"
+    ],
+    "favorite_cuisines_other": null,
+    "favorite_restaurants": [
+        "32",
+        "32",
+        "32",
+        "32"
+    ],
+    "children_preferences": null,
+    "status": "completed",
+    "completed_at": "2026-11-11T03:08:15.000000Z",
+    "created_at": "2026-11-11T03:06:43.000000Z",
+    "updated_at": "2026-11-11T03:08:15.000000Z"
+}

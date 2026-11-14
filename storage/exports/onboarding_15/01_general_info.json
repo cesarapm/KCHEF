@@ -1,0 +1,21 @@
+{
+    "onboarding_id": 15,
+    "status": "completado",
+    "prospect": {
+        "id": 16,
+        "name": null,
+        "email": "geoapm@hotmail.com",
+        "phone": "+524445087305"
+    },
+    "assigned_to": {
+        "id": null,
+        "name": null,
+        "email": null
+    },
+    "timeline": {
+        "created_at": "2026-11-10 21:03:41",
+        "started_at": null,
+        "completed_at": "2026-11-10 21:08:15",
+        "updated_at": "2026-11-10 21:08:15"
+    }
+}

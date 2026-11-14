@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla onboarding_forms - Chef Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .summary p {
+            color: #555;
+            margin: 5px 0;
+        }
+        
+        .form-record {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .form-id {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .field {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 20px;
+            margin: 8px 0;
+            padding: 8px 0;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .field-value {
+            color: #555;
+            word-break: break-word;
+        }
+        
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+            color: #555;
+        }
+        
+        .list-item::before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .empty {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .badge-completed {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .field {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Tabla: onboarding_forms</h1>
+            <p>Base de Datos: Chef Site - Onboarding System</p>
+        </div>
+        
+        <div class="content">
+            <!-- RESUMEN -->
+            <div class="summary">
+                <h2 style="color: #667eea; margin-bottom: 15px;">📈 Resumen</h2>
+                <p><strong>Total de Registros:</strong> 1</p>
+                <p><strong>Tabla:</strong> onboarding_forms</p>
+                <p><strong>Última Actualización:</strong> 2026-11-10 21:08:15</p>
+                <p><strong>Descripción:</strong> Almacena los formularios de información completados durante el proceso de onboarding</p>
+            </div>
+            
+            <!-- FORMULARIO #4 -->
+            <div class="form-record">
+                <div class="form-id">📋 Formulario ID: 4</div>
+                
+                <!-- Información General -->
+                <div class="section">
+                    <div class="section-title">📌 Información General</div>
+                    <div class="field">
+                        <span class="field-label">Onboarding ID:</span>
+                        <span class="field-value"><strong>15</strong></span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Status:</span>
+                        <span class="field-value"><span class="badge badge-completed">✅ Completado</span></span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Fecha Completado:</span>
+                        <span class="field-value">2026-11-10 21:08:15</span>
+                    </div>
+                </div>
+                
+                <!-- Información Básica del Hogar -->
+                <div class="section">
+                    <div class="section-title">🏠 Información Básica del Hogar</div>
+                    <div class="grid-2">
+                        <div>
+                            <div class="field">
+                                <span class="field-label">Clientes Principales:</span>
+                                <span class="field-value">dsa, dsa</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Dirección:</span>
+                                <span class="field-value">saddsa</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Fecha de Inicio:</span>
+                                <span class="field-value">2026-11-27</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="field">
+                                <span class="field-label">Adultos:</span>
+                                <span class="field-value"><strong>2</strong></span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Niños:</span>
+                                <span class="field-value"><strong>2</strong></span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Edades de Niños:</span>
+                                <span class="field-value">2, 2 años</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Objetivos del Hogar -->
+                <div class="section">
+                    <div class="section-title">🎯 Objetivos del Hogar</div>
+                    <div class="list-item">Ahorrar tiempo</div>
+                    <div class="list-item">Ganar músculo</div>
+                </div>
+                
+                <!-- Preferencias Dietéticas -->
+                <div class="section">
+                    <div class="section-title">🍽️ Preferencias Dietéticas</div>
+                    <div class="list-item">Mediterráneo</div>
+                </div>
+                
+                <!-- Preferencias Nutricionales -->
+                <div class="section">
+                    <div class="section-title">🥗 Preferencias Nutricionales</div>
+                    <div class="list-item">Carnes magras</div>
+                    <div class="list-item">Productos orgánicos</div>
+                </div>
+                
+                <!-- Alimentos a Evitar -->
+                <div class="section">
+                    <div class="section-title">⛔ Alimentos a Evitar</div>
+                    <div class="list-item">32</div>
+                    <div class="list-item">32</div>
+                    <p style="color: #999; font-size: 0.9em; margin-top: 10px;">
+                        <em>Nota: Los valores "32" parecen ser datos de prueba</em>
+                    </p>
+                </div>
+                
+                <!-- Cuisinas Favoritas -->
+                <div class="section">
+                    <div class="section-title">🌍 Cuisinas Favoritas</div>
+                    <div class="list-item">Francesa</div>
+                </div>
+                
+                <!-- Restaurantes Favoritos -->
+                <div class="section">
+                    <div class="section-title">🏪 Restaurantes Favoritos</div>
+                    <div class="list-item">32</div>
+                    <div class="list-item">32</div>
+                    <div class="list-item">32</div>
+                    <div class="list-item">32</div>
+                    <p style="color: #999; font-size: 0.9em; margin-top: 10px;">
+                        <em>Nota: Los valores "32" parecen ser datos de prueba</em>
+                    </p>
+                </div>
+                
+                <!-- Preferencias de Niños -->
+                <div class="section">
+                    <div class="section-title">👶 Preferencias de Niños</div>
+                    <p class="empty">No especificadas</p>
+                </div>
+                
+                <!-- Fechas del Sistema -->
+                <div class="section">
+                    <div class="section-title">📅 Fechas del Sistema</div>
+                    <div class="field">
+                        <span class="field-label">Creado:</span>
+                        <span class="field-value">2026-11-10 21:06:43</span>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Actualizado:</span>
+                        <span class="field-value">2026-11-10 21:08:15</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TABLA ESTRUCTURADA -->
+            <div class="table-wrapper">
+                <h2 style="color: #667eea; margin-bottom: 15px;">📋 Vista de Tabla</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Onboarding ID</th>
+                            <th>Status</th>
+                            <th>Clientes Principales</th>
+                            <th>Adultos</th>
+                            <th>Niños</th>
+                            <th>Completado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4</td>
+                            <td>15</td>
+                            <td><span class="badge badge-completed">Completado</span></td>
+                            <td>dsa, dsa</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2026-11-10 21:08:15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- ESTRUCTURA DE LA TABLA EN BD -->
+            <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #667eea;">
+                <h2 style="color: #667eea; margin-bottom: 15px;">🗄️ Estructura de la Tabla en Base de Datos</h2>
+                <pre style="background: white; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em;"><code>CREATE TABLE onboarding_forms (
+    id                           BIGINT PRIMARY KEY
+    onboarding_id                BIGINT FK → onboardings
+    
+    // Información Básica
+    primary_clients              JSON
+    start_date                   DATE
+    household_address            TEXT
+    number_of_adults             INT
+    number_of_kids               INT
+    kids_ages                    VARCHAR
+    
+    // Preferencias (JSON arrays)
+    household_goals              JSON
+    dietary_preferences          JSON
+    nutrition_preferences        JSON
+    foods_to_avoid               JSON
+    favorite_cuisines            JSON
+    favorite_restaurants         JSON
+    children_preferences         JSON
+    
+    // Campos adicionales (Migración 6)
+    household_goals_other        TEXT
+    dietary_preferences_other    TEXT
+    nutrition_preferences_other  TEXT
+    favorite_cuisines_other      TEXT
+    
+    // Estado
+    status                       VARCHAR (draft, completed, reviewed)
+    completed_at                 TIMESTAMP
+    
+    created_at                   TIMESTAMP
+    updated_at                   TIMESTAMP
+)
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📊 Tabla: onboarding_forms | Chef Site Database</p>
+            <p style="margin-top: 10px;">Última actualización: 2026-11-10 21:08:15</p>
+        </div>
+    </div>
+</body>
+</html>
