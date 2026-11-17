@@ -73,7 +73,7 @@
           <span class="index">01</span>
           <span class="icon">♡</span>
         </div>
-        <img :src="'/images/meet/lore.webp'" alt="Truly personalized service" />
+        <img :src="'/images/meet/meets-ult1.webp'" alt="Truly personalized service" />
         <h2>Truly Personalized</h2>
         <h3>Built around your household.</h3>
         <p>
@@ -87,7 +87,7 @@
           <span class="index">02</span>
           <span class="icon">♨</span>
         </div>
-        <img :src="'/images/portadas/portadahome.webp'" alt="Thoughtfully prepared meals" />
+        <img :src="'/images/meet/meets-ult2.webp'" alt="Thoughtfully prepared meals" />
         <h2>Thoughtfully Prepared</h2>
         <h3>Restaurant-level expertise, made for real life.</h3>
         <p>
@@ -101,7 +101,7 @@
           <span class="index">03</span>
           <span class="icon">⌂</span>
         </div>
-        <img :src="'/images/portadas/portadanosotros.webp'" alt="More than cooking details" />
+        <img :src="'/images/meet/meets-ult3.webp'" alt="More than cooking details" />
         <h2>More Than Cooking</h2>
         <h3>We take care of the details.</h3>
         <p>
@@ -115,7 +115,7 @@
           <span class="index">04</span>
           <span class="icon">✦</span>
         </div>
-        <img :src="'/images/meet/adams.webp'" alt="Genuine hospitality" />
+        <img :src="'/images/meet/meets-ult4.webp'" alt="Genuine hospitality" />
         <h2>Genuine Hospitality</h2>
         <h3>You're never just another client.</h3>
         <p>
@@ -127,10 +127,10 @@
 
     <section class="details-strip">
       <div class="strip-images">
-        <img :src="'/images/portadas/portadanosotros.webp'" alt="Prepared meal container" />
-        <img :src="'/images/portadas/portadahome.webp'" alt="Fresh ingredients and prep" />
-        <img :src="'/images/meet/lore.webp'" alt="Personalized menu notes" />
-        <img :src="'/images/meet/adams.webp'" alt="Clean home kitchen and plated meals" />
+        <img :src="'/images/meet/meets-ult3.webp'" alt="Prepared meal container" />
+        <img :src="'/images/meet/meets-ult2.webp'" alt="Fresh ingredients and prep" />
+        <img :src="'/images/meet/meets-ult5.webp'" alt="Personalized menu notes" />
+        <img :src="'/images/meet/meets-ult6.webp'" alt="Clean home kitchen and plated meals" />
       </div>
 
       <div class="strip-copy">
@@ -369,7 +369,7 @@
 
 .difference-card img {
   width: 100%;
-  height: 160px;
+  height: 460px;
   object-fit: cover;
   border: 1px solid rgba(222, 197, 157, 0.25);
 }
@@ -413,7 +413,7 @@
 
 .strip-images img {
   width: 100%;
-  height: 150px;
+  height: 350px;
   object-fit: cover;
 }
 
@@ -560,7 +560,7 @@
   }
 
   .difference-card img {
-    height: 220px;
+    height: 320px;
   }
 
   .strip-images {
@@ -568,7 +568,7 @@
   }
 
   .strip-images img {
-    height: 190px;
+    height: 290px;
   }
 }
 </style>

@@ -4,11 +4,11 @@
     <header ref="headerRef" class="kaczmarek-header">
       <div class="header-container">
         <router-link to="/" class="logo-section">
-          <div class="logo-text">
-            <h2>KCHEF SERVICES</h2>
-            <p class="tagline">Private Chef Services</p>
-            <div class="logo-decoration">🌿</div>
-          </div>
+          <img
+            :src="'/images/logo.webp'"
+            alt="KCHEF SERVICES - Private Chef Services"
+            class="logo-image"
+          />
         </router-link>
 
         <nav class="header-nav">
@@ -114,8 +114,11 @@
     <footer class="kaczmarek-footer">
       <div class="footer-container">
         <div class="footer-content">
-          <h3>🍽️ KCHEF SERVICES</h3>
-          <p class="footer-tagline">Private Chef Services</p>
+          <img
+            :src="'/images/logo.webp'"
+            alt="KCHEF SERVICES - Private Chef Services"
+            class="footer-logo-image"
+          />
           <p class="footer-description">Personalized culinary experiences designed around your family.</p>
         </div>
         <div class="footer-links">
@@ -293,33 +296,10 @@ const logout = async () => {
   transform: translateY(-2px);
 }
 
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.logo-text h2 {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #1a1a1a;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
-  margin: 0;
-}
-
-.tagline {
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #555;
-  text-transform: uppercase;
-  margin-top: 2px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
-}
-
-.logo-decoration {
-  font-size: 16px;
-  margin-left: 8px;
+.logo-image {
+  display: block;
+  width: clamp(80px, 18vw, 80px);
+  height: auto;
 }
 
 /* ===== NAVIGATION ===== */
@@ -475,21 +455,10 @@ const logout = async () => {
   align-items: start;
 }
 
-.footer-content h3 {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-.footer-tagline {
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #666;
-  text-transform: uppercase;
+.footer-logo-image {
+  width: min(100%, 90px);
+  height: auto;
   margin-bottom: 16px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .footer-description {
@@ -536,10 +505,6 @@ const logout = async () => {
     display: flex;
   }
 
-  .logo-text h2 {
-    font-size: 16px;
-  }
-
   .footer-container {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -548,6 +513,12 @@ const logout = async () => {
 
   .footer-links {
     text-align: center;
+  }
+
+  .footer-logo-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .kaczmarek-footer {
@@ -560,12 +531,8 @@ const logout = async () => {
     padding: 12px 16px;
   }
 
-  .logo-text h2 {
-    font-size: 14px;
-  }
-
-  .tagline {
-    font-size: 9px;
+  .logo-image {
+    width: clamp(60px, 42vw, 60px);
   }
 }
 </style>

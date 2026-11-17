@@ -59,15 +59,15 @@
           <p class="manifesto-tagline"><em>Less time cooking.<br>More time together.</em></p>
 
           <div class="manifesto-actions">
-            <router-link to="/about" class="btn btn-primary">Our Story</router-link>
-            <router-link to="/services" class="btn btn-secondary">Meet Chef Adam</router-link>
+            <router-link to="/services" class="btn btn-primary">Our Story</router-link>
+            <router-link to="/why-families-choose-us" class="btn btn-secondary">Meet Chef Adam</router-link>
           </div>
         </article>
 
         <article class="team-member adam">
           <div class="member-image">
             <img
-              :src="'/images/meet/adams.webp'"
+              :src="'/images/meet/adam.webp'"
               alt="Chef Adam - Culinary Expert"
               class="member-img"
             />
@@ -141,7 +141,7 @@
   position: relative;
   overflow: hidden;
   min-height: 620px;
-  background: url('/images/portadas/portadahome.webp') 68% center / cover no-repeat;
+  background: url('/images/portadas/portadapareja.webp') 68% center / cover no-repeat;
   display: flex;
   align-items: center;
   padding: 36px;
@@ -223,7 +223,7 @@
 
 .member-image {
   width: 100%;
-  height: 440px;
+  height: 540px;
   overflow: hidden;
   background: #f0ebe1;
 }
@@ -437,7 +437,7 @@
   }
 
   .member-image {
-    height: 300px;
+    height: 450px;
   }
 
   .member-content {

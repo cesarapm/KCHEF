@@ -27,7 +27,7 @@
 
       <div class="plans-grid">
         <article class="plan-card">
-          <img :src="'/images/portadas/portadahome.webp'" alt="Three-meal plan" />
+          <img :src="'/images/meet/3meels.webp'" alt="Three-meal plan" />
           <div class="plan-body">
             <h3>THREE-MEAL PLAN</h3>
             <p>3 complete meals</p>
@@ -37,7 +37,7 @@
         </article>
 
         <article class="plan-card">
-          <img :src="'/images/portadas/portadahome.webp'" alt="Four-meal plan" />
+          <img :src="'/images/meet/4meels.webp'" alt="Four-meal plan" />
           <div class="plan-body">
             <h3>FOUR-MEAL PLAN</h3>
             <p>4 complete meals</p>
@@ -47,7 +47,7 @@
         </article>
 
         <article class="plan-card">
-          <img :src="'/images/portadas/portadanosotros.webp'" alt="Five-meal plan" />
+          <img :src="'/images/meet/5meels.webp'" alt="Five-meal plan" />
           <div class="plan-body">
             <h3>FIVE-MEAL PLAN</h3>
             <p>5 complete meals</p>
@@ -96,19 +96,19 @@
 
       <div class="extras-grid">
         <article class="extra-card">
-          <img :src="'/images/portadas/portadanosotros.webp'" alt="Fresh pastry" />
+          <img :src="'/images/meet/meet-extra1.webp'" alt="Fresh pastry" />
           <h3>Fresh Pastry</h3>
         </article>
         <article class="extra-card">
-          <img :src="'/images/portadas/portadahome.webp'" alt="Side salad" />
+          <img :src="'/images/meet/meet-extra2.webp'" alt="Side salad" />
           <h3>Side Salad</h3>
         </article>
         <article class="extra-card">
-          <img :src="'/images/portadas/portadahome.webp'" alt="Fruit and vegetable prep" />
+          <img :src="'/images/meet/meet-extra3.webp'" alt="Fruit and vegetable prep" />
           <h3>Fruit &amp; Vegetable Prep</h3>
         </article>
         <article class="extra-card">
-          <img :src="'/images/portadas/portadanosotros.webp'" alt="Additional child portions" />
+          <img :src="'/images/meet/meet-extra4.webp'" alt="Additional child portions" />
           <h3>Additional Child Portions</h3>
         </article>
       </div>
@@ -150,10 +150,10 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 900px;
+  height: 1100px;
   padding: 56px 200px;
   min-height: auto;
-  background: url('/images/portadas/portadahome.webp') right center / cover no-repeat;
+  background: url('/images/portadas/portada-our.webp') right center / cover no-repeat;
   display: flex;
   align-items: center;
 }
@@ -226,7 +226,7 @@
 
 .plan-card img {
   width: 100%;
-  height: 180px;
+  height: 320px;
   object-fit: cover;
 }
 
@@ -326,7 +326,7 @@
 
 .extra-card img {
   width: 100%;
-  height: 135px;
+  height: 175px;
   object-fit: cover;
 }
 
@@ -341,14 +341,14 @@
   max-width: 1480px;
   margin: 0 auto 40px;
   background: url('/images/portadas/portadahome.webp') center/cover no-repeat;
-  min-height: 300px;
+  min-height: 500px;
   border: 1px solid #e7dcc8;
   border-top: 0;
 }
 
 .delivery-overlay {
   max-width: 560px;
-  min-height: 300px;
+  min-height: 500px;
   background: linear-gradient(90deg, rgba(20, 38, 31, 0.88) 0%, rgba(20, 38, 31, 0.72) 60%, rgba(20, 38, 31, 0) 100%);
   color: white;
   padding: 40px;

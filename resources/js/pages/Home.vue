@@ -123,7 +123,7 @@
               <span class="step-number">01</span>
               <span class="step-line"></span>
             </div>
-            <img :src="'/images/portadas/portadanosotros.webp'" alt="Lore consulting with a family" />
+            <img :src="'/images/portadas/chef-adam1.webp'" alt="Lore consulting with a family" />
             <h3>Let’s Get to Know You</h3>
             <p>
               Book a complimentary consultation so we can learn about your family, lifestyle, culinary preferences,
@@ -137,7 +137,7 @@
               <span class="step-number">02</span>
               <span class="step-line"></span>
             </div>
-            <img :src="'/images/portadas/portadahome.webp'" alt="Menu planning and ingredients" />
+            <img :src="'/images/portadas/chef-adam2.webp'" alt="Menu planning and ingredients" />
             <h3>We Create Your Experience</h3>
             <p>
               Based on your needs, we design a personalized service plan and begin building menus around your tastes,
@@ -151,7 +151,7 @@
               <span class="step-number">03</span>
               <span class="step-line"></span>
             </div>
-            <img :src="'/images/portadas/portadahome.webp'" alt="Chef Adam cooking in home kitchen" />
+            <img :src="'/images/portadas/chef-adam.webp'" alt="Chef Adam cooking in home kitchen" />
             <h3>Chef Adam Takes Care of the Details</h3>
             <p>
               From menu planning and grocery shopping to preparing your meals in your own kitchen, Chef Adam takes care
@@ -165,7 +165,7 @@
               <span class="step-number">04</span>
               <span class="step-line"></span>
             </div>
-            <img :src="'/images/portadas/portadanosotros.webp'" alt="Family enjoying dinner together at table" />
+            <img :src="'/images/portadas/portadahome.webp'" alt="Family enjoying dinner together at table" />
             <h3>You Simply Enjoy</h3>
             <p>
               Your meals are ready. Your kitchen is cared for. And the time that would have been spent planning,
@@ -694,7 +694,7 @@ const submitForm = async () => {
 
 .how-it-works-step img {
   width: 100%;
-  height: 190px;
+  height: 290px;
   object-fit: cover;
   margin-bottom: 14px;
 }
@@ -1295,7 +1295,7 @@ form {
   }
 
   .how-it-works-step img {
-    height: 140px;
+    height: 260px;
   }
 
   .how-it-works-step h3 {
