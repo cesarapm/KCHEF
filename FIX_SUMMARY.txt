@@ -1,0 +1,122 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                   AUTHENTICATION SESSION FIX SUMMARY                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─ PROBLEMA ─────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│  Cuando recargabas http://127.0.0.1:8000/dashboard:                        │
+│  • Se redirigía a http://127.0.0.1:8000/login?redirect=/dashboard         │
+│  • Aunque tenías sesión activa (podías entrar sin problema)               │
+│  • Al clickear en enlaces internos funcionaba bien                         │
+│                                                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌─ CAUSA RAÍZ ───────────────────────────────────────────────────────────────┐
+│                                                                              │
+│  1. CACHÉ AGRESIVO (60 segundos)                                           │
+│     → useAuthState.js guardaba la verificación en caché                   │
+│     → Al recargar, usaba el caché sin validar con servidor                │
+│                                                                              │
+│  2. SIN REVALIDACIÓN EN RECARGA                                            │
+│     → No había forma de distinguir:                                        │
+│       - Navegación interna (no necesita validar cada vez)                 │
+│       - Recarga de página (SÍ necesita validar con servidor)              │
+│                                                                              │
+│  3. DESAJUSTE CLIENTE-SERVIDOR                                            │
+│     → El estado del navegador no se sincronizaba                           │
+│     → Si la sesión expiraba en servidor, el cliente no lo sabía           │
+│                                                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌─ SOLUCIÓN ─────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│  ARCHIVO: resources/js/composables/useAuthState.js                        │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  ✓ Agregado parámetro forceRefresh a checkAuthentication()               │
+│    → Si forceRefresh=true: ignora caché, valida con servidor            │
+│    → Si forceRefresh=false: usa caché de 60 segundos                    │
+│                                                                              │
+│  ✓ Agregado cache: 'no-store' a todas las peticiones fetch               │
+│    → Evita caché HTTP del navegador                                      │
+│                                                                              │
+│  ✓ Resetean flags de caché en logoutUser()                               │
+│    → Garantiza validación en próximo login                               │
+│                                                                              │
+│  ARCHIVO: resources/js/router/index.js                                    │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  ✓ Detecta si es RECARGA de página:                                       │
+│    const isPageReload = !from.name                                        │
+│    → from.name = null → es recarga                                       │
+│    → from.name = "Home" → es navegación interna                          │
+│                                                                              │
+│  ✓ Pasa forceRefresh a checkAuthentication()                             │
+│    → checkAuthentication(isPageReload)                                    │
+│    → En recarga: fuerza validación remota                                 │
+│    → En navegación: usa caché local                                       │
+│                                                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌─ COMPORTAMIENTO AHORA ─────────────────────────────────────────────────────┐
+│                                                                              │
+│  ESCENARIO 1: Presionar F5 en /dashboard                                   │
+│  ┌────────────────────────────────────────────────────┐                    │
+│  │ 1. from.name = null → isPageReload = true         │                    │
+│  │ 2. checkAuthentication(true) → forceRefresh=true  │                    │
+│  │ 3. Saltea caché, hace fetch a /api/user           │                    │
+│  │ 4. Valida con servidor                            │                    │
+│  │ 5. ✓ Si sesión válida: accede a /dashboard       │                    │
+│  │ 6. ✗ Si sesión expiró: redirige a /login         │                    │
+│  └────────────────────────────────────────────────────┘                    │
+│                                                                              │
+│  ESCENARIO 2: Click en enlace /home → /dashboard                           │
+│  ┌────────────────────────────────────────────────────┐                    │
+│  │ 1. from.name = "Home" → isPageReload = false      │                    │
+│  │ 2. checkAuthentication(false) → usa caché         │                    │
+│  │ 3. Si caché válido: accede sin hacer fetch        │                    │
+│  │ 4. MÁS RÁPIDO, menos peticiones al servidor       │                    │
+│  │ 5. Si caché expiró: hace fetch fresco             │                    │
+│  └────────────────────────────────────────────────────┘                    │
+│                                                                              │
+│  ESCENARIO 3: Logout + Login                                               │
+│  ┌────────────────────────────────────────────────────┐                    │
+│  │ 1. logoutUser() resetea flags de caché            │                    │
+│  │ 2. hasCheckedOnce = false                         │                    │
+│  │ 3. lastCheckTime = 0                              │                    │
+│  │ 4. Próximo login no tiene caché de sesión anterior │                    │
+│  │ 5. ✓ Nueva sesión se valida correctamente         │                    │
+│  └────────────────────────────────────────────────────┘                    │
+│                                                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PRUEBAS RECOMENDADAS ─────────────────────────────────────────────────────┐
+│                                                                              │
+│  □ Login > inmediatamente acceder a /dashboard                            │
+│    → Debe funcionar sin problemas                                         │
+│                                                                              │
+│  □ En /dashboard, presionar F5 (o Ctrl+R)                                │
+│    → Debe mantener la sesión y no redirigir a login                       │
+│                                                                              │
+│  □ En /dashboard, escribir URL en barra y Enter                           │
+│    → Debe mantener la sesión y no redirigir a login                       │
+│                                                                              │
+│  □ Cierre del navegador > reapertura                                      │
+│    → Si sesión expiró: debe redirigir a login                             │
+│    → Si sesión aún válida: accede directo a dashboard                     │
+│                                                                              │
+│  □ Logout > Login > Acceder a /dashboard                                  │
+│    → Debe funcionar correctamente con nueva sesión                        │
+│                                                                              │
+│  □ Navegar entre /home → /dashboard (con clicks)                          │
+│    → Debe ser rápido (usa caché)                                          │
+│                                                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+
+ARCHIVOS MODIFICADOS:
+  • resources/js/composables/useAuthState.js
+  • resources/js/router/index.js
+
+DOCUMENTACIÓN CREADA:
+  • AUTHENTICATION_FIX.md (documentación detallada)
+  • FIX_SUMMARY.txt (este archivo)
+
+═══════════════════════════════════════════════════════════════════════════════

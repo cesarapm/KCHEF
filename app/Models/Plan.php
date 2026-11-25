@@ -25,5 +25,10 @@ class Plan extends Model
     {
         return $this->hasMany(Onboarding::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
 

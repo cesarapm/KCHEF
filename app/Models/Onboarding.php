@@ -63,4 +63,14 @@ class Onboarding extends Model
     {
         return $this->hasMany(OnboardingDocument::class);
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function latestOrder(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Order::class)->latestOfMany();
+    }
 }

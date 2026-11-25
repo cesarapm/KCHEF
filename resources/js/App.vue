@@ -106,7 +106,7 @@
     </v-navigation-drawer>
 
     <!-- Main Content -->
-    <v-main class="main-content">
+    <v-main class="main-content" :style="{ '--header-offset': `${headerOffset}px` }">
       <router-view></router-view>
     </v-main>
 
@@ -141,15 +141,36 @@ const { isAuthenticated } = useAuthState()
 const authReady = ref(false)
 const drawer = ref(false)
 const headerRef = ref(null)
+const headerOffset = ref(72)
 let lastScrollTop = 0
 let ticking = false
 const scrollThreshold = 6
 
+const updateHeaderOffset = () => {
+  const header = headerRef.value
+  if (!header) return
+
+  const measuredHeight = Math.ceil(header.getBoundingClientRect().height || 72)
+  headerOffset.value = Math.max(72, measuredHeight)
+}
+
 onMounted(async () => {
   window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', updateHeaderOffset, { passive: true })
   handleScroll()
+  await nextTick()
+  updateHeaderOffset()
+  
+  // Check if this is a page reload by checking if sessionStorage has our flag
+  // If not present, it's a fresh page load - force server validation
+  const isPageReload = !sessionStorage.getItem('_auth_initialized')
+  
   try {
-    await checkAuthentication()
+    // Always force refresh on initial page load to validate with server
+    await checkAuthentication(true)
+    
+    // Mark that we've initialized so subsequent checks can use cache
+    sessionStorage.setItem('_auth_initialized', 'true')
   } finally {
     authReady.value = true
   }
@@ -157,6 +178,7 @@ onMounted(async () => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', updateHeaderOffset)
 })
 
 const handleScroll = () => {
@@ -205,7 +227,19 @@ watch(drawer, (isOpen) => {
   if (isOpen) {
     headerRef.value?.classList.remove('hidden')
   }
+
+  nextTick(() => {
+    updateHeaderOffset()
+  })
 })
+
+watch(
+  () => route.fullPath,
+  async () => {
+    await nextTick()
+    updateHeaderOffset()
+  }
+)
 
 const smoothScroll = async (selector) => {
   drawer.value = false
@@ -231,6 +265,8 @@ const logout = async () => {
   drawer.value = false
   const success = await logoutUser()
   if (success) {
+    // Clear the auth initialization flag on logout
+    sessionStorage.removeItem('_auth_initialized')
     router.push('/')
   }
 }
@@ -432,7 +468,7 @@ const logout = async () => {
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
-  margin-top: 72px;
+  margin-top: var(--header-offset, 72px);
   background: #f5f5f5;
 }
 

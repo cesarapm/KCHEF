@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\EnsureSessionIsValid::class,
         ],
 
         'api' => [
@@ -45,6 +46,7 @@ class Kernel extends HttpKernel
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\EnsureSessionIsValid::class,
         ],
     ];
 
@@ -61,6 +63,7 @@ class Kernel extends HttpKernel
         'auth.api' => \App\Http\Middleware\AuthenticateApi::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\EnsureSessionIsValid::class,
         'admin.only' => \App\Http\Middleware\AdminOnly::class,
         'ensure.json' => \App\Http\Middleware\EnsureJsonResponse::class,
         // Otros middleware...

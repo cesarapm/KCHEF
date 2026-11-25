@@ -13,7 +13,15 @@ class AuthenticateApi
      */
     public function handle(Request $request, Closure $next)
     {
+        // Log para debugging
+        $sessionId = $request->session()->getId();
+        $isAuth = auth()->check();
+        $user = auth()->user();
+        
+        \Log::debug("AuthenticateApi - SessionID: {$sessionId}, Auth: {$isAuth}, User: " . ($user?->email ?? 'null'));
+        
         if (!auth()->check()) {
+            \Log::warning("AuthenticateApi - No auth for request to: " . $request->path());
             return response()->json([
                 'message' => 'No autorizado - Por favor inicia sesión',
             ], Response::HTTP_UNAUTHORIZED);

@@ -77,4 +77,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\ProspectActivityLog::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\Order::class);
+    }
+
+    public function assignedServices()
+    {
+        return $this->hasMany(\App\Models\OrderService::class, 'assigned_chef_id');
+    }
 }

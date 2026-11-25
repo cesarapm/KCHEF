@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\OrderResource;
 use App\Filament\Resources\OnboardingResource\Pages;
 use App\Filament\Resources\OnboardingResource\RelationManagers;
 use App\Models\Onboarding;
+use App\Models\Order;
 use App\Models\Plan;
+use Filament\Notifications\Notification;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Components\Section;
@@ -148,6 +151,11 @@ class OnboardingResource extends Resource
                 TextColumn::make('requirements_count')
                     ->label('Requirements')
                     ->counts('requirements'),
+
+                TextColumn::make('orders_count')
+                    ->label('Orders')
+                    ->counts('orders')
+                    ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -177,6 +185,52 @@ class OnboardingResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('create_order')
+                    ->label('Create Order')
+                    ->icon('heroicon-o-shopping-bag')
+                    ->color('success')
+                    ->action(function (Onboarding $record) {
+                        $prospect = $record->prospect;
+                        $userId = $prospect?->user_id;
+
+                        if (!$userId) {
+                            Notification::make()
+                                ->title('This onboarding does not have a registered client yet.')
+                                ->warning()
+                                ->send();
+
+                            return;
+                        }
+
+                        $order = Order::query()->create([
+                            'onboarding_id' => $record->id,
+                            'user_id' => $userId,
+                            'plan_id' => $record->plan_id,
+                            'payment_status' => Order::PAYMENT_PENDING,
+                            'service_count' => 4,
+                        ]);
+
+                        redirect(OrderResource::getUrl('edit', ['record' => $order]));
+                    }),
+                Tables\Actions\Action::make('open_latest_order')
+                    ->label('Open Last Order')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->visible(fn (Onboarding $record): bool => $record->orders()->exists())
+                    ->action(function (Onboarding $record) {
+                        $order = $record->orders()->latest('id')->first();
+
+                        if (!$order) {
+                            Notification::make()
+                                ->title('No orders found for this onboarding yet.')
+                                ->warning()
+                                ->send();
+
+                            return;
+                        }
+
+                        redirect(OrderResource::getUrl('edit', ['record' => $order]));
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

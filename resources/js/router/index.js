@@ -14,6 +14,7 @@ import Login from '../pages/Login.vue';
 import CompletarRegistro from '../pages/CompletarRegistro.vue';
 import Onboarding from '../pages/Onboarding.vue';
 import Dashboard from '../pages/Dashboard.vue';
+import ServiceReview from '../pages/ServiceReview.vue';
 
 const clientMetaConfig = {
   '/': {
@@ -53,7 +54,7 @@ const clientMetaConfig = {
   },
   '/nosotros': {
     title: 'About KChef Services | Chef Adam & Lore',
-    description: 'Learn about KChef Services, Chef Adam’s culinary expertise, and Lore’s commitment to genuine hospitality.',
+    description: 'Learn about KChef Services, Chef Adam\'s culinary expertise, and Lore\'s commitment to genuine hospitality.',
     keywords: 'about kchef services, chef adam, lore, culinary excellence',
     image: '/images/portadas/portadanosotros.webp',
     index: true,
@@ -189,6 +190,12 @@ const routes = [
     component: Dashboard,
     meta: { requiresAuth: true }
   },
+  {
+    path: '/dashboard/service/:id',
+    name: 'ServiceReview',
+    component: ServiceReview,
+    meta: { requiresAuth: true }
+  },
 
   {
     path: '/nosotros',
@@ -239,8 +246,13 @@ router.beforeEach(async (to, from, next) => {
 
   if (requiresAuth) {
     try {
-      // Usar checkAuthentication que tiene caché integrado
-      const isAuth = await checkAuthentication();
+      // Detectar si es una recarga de página (from.name es null)
+      // o navegación interna (from.name tiene valor)
+      const isPageReload = !from.name;
+      
+      // Usar forceRefresh en recarga de página para validar con servidor
+      const isAuth = await checkAuthentication(isPageReload);
+      
       if (isAuth) {
         next();
       } else {

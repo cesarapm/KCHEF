@@ -13,6 +13,8 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        \Log::info("🔐 LOGIN ATTEMPT - Email: " . ($request->input('email') ?? 'none'));
+        
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -27,6 +29,7 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => $validated['password'],
         ])) {
+            \Log::info("✅ LOGIN SUCCESS - Email: " . Auth::user()->email);
             $request->session()->regenerate();
 
             $user = Auth::user();
@@ -39,10 +42,12 @@ class AuthController extends Controller
                 'message' => 'Login successful',
                 'user' => $user,
                 'prospect_id' => $prospect?->id,
+                'csrf_token' => csrf_token(),
             ]);
         }
 
         // Si falla, devolver error
+        \Log::warning("❌ LOGIN FAILED - Email: " . $validated['email']);
         throw ValidationException::withMessages([
             'email' => 'The provided credentials do not match our records.',
         ]);

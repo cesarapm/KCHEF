@@ -1,0 +1,3 @@
+// Este es un backup para referencia
+// El verdadero problema es que necesitamos asegurar que la sesión
+// se regenere correctamente después de login
