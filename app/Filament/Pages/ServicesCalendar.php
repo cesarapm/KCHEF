@@ -116,9 +116,9 @@ class ServicesCalendar extends Page
     protected function statusColorClass(string $status): string
     {
         return match ($status) {
-            OrderService::STATUS_COMPLETADO => 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300',
-            OrderService::STATUS_EN_PROCESO, OrderService::STATUS_EN_PREPARACION => 'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-            OrderService::STATUS_EN_ENTREGA, OrderService::STATUS_HOME_SERVICE => 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
+            OrderService::STATUS_COMPLETED => 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300',
+            OrderService::STATUS_IN_PROGRESS, OrderService::STATUS_IN_PREPARATION => 'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+            OrderService::STATUS_OUT_FOR_DELIVERY, OrderService::STATUS_HOME_SERVICE => 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
             default => 'border-gray-200 bg-gray-50 text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200',
         };
     }
@@ -126,16 +126,16 @@ class ServicesCalendar extends Page
     protected function statusLabel(string $status): string
     {
         return match ($status) {
-            OrderService::STATUS_PENDIENTE_CONFIGURACION => 'Pending setup',
-            OrderService::STATUS_MENU_ENVIADO => 'Menu sent',
-            OrderService::STATUS_PENDIENTE_SELECCION => 'Waiting for selection',
-            OrderService::STATUS_SELECCION_CONFIRMADA => 'Selection confirmed',
-            OrderService::STATUS_AGENDADO => 'Scheduled',
-            OrderService::STATUS_EN_PREPARACION => 'In preparation',
-            OrderService::STATUS_EN_PROCESO => 'In progress',
-            OrderService::STATUS_EN_ENTREGA => 'Out for delivery',
+            OrderService::STATUS_PENDING_CONFIGURATION => 'Pending setup',
+            OrderService::STATUS_MENU_SENT => 'Menu sent',
+            OrderService::STATUS_PENDING_SELECTION => 'Waiting for selection',
+            OrderService::STATUS_SELECTION_CONFIRMED => 'Selection confirmed',
+            OrderService::STATUS_SCHEDULED => 'Scheduled',
+            OrderService::STATUS_IN_PREPARATION => 'In preparation',
+            OrderService::STATUS_IN_PROGRESS => 'In progress',
+            OrderService::STATUS_OUT_FOR_DELIVERY => 'Out for delivery',
             OrderService::STATUS_HOME_SERVICE => 'Home service',
-            OrderService::STATUS_COMPLETADO => 'Completed',
+            OrderService::STATUS_COMPLETED => 'Completed',
             default => $status,
         };
     }

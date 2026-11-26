@@ -201,7 +201,7 @@ const submitForm = async () => {
       setTimeout(async () => {
         try {
           const userData = currentUser.value
-          console.log('User data:', userData)
+        //   console.log('User data:', userData)
 
           // If has prospect_id, check onboarding
           if (userData && userData.prospect_id) {

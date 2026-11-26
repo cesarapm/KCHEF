@@ -1,67 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="
-    min-height: 100vh;
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-">
-    <div style="
-        width: 100%;
-        max-width: 900px;
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-    ">
+<div class="min-h-screen bg-gradient-to-br from-red-50 via-red-50 to-orange-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
         <!-- HEADER -->
-        <div style="
-            background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #dc2626 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        ">
-            <h1 style="
-                margin: 0 0 10px 0;
-                font-size: 32px;
-                font-weight: 700;
-            ">
-                🍽️ Perfil de Cocina - Onboarding #{{ $onboarding->id }}
-            </h1>
-            <p style="
-                margin: 0;
-                font-size: 16px;
-                opacity: 0.95;
-                font-weight: 300;
-            ">
-                Información del formulario completado
-            </p>
+        <div class="bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white rounded-t-2xl shadow-xl overflow-hidden">
+            <div class="px-6 py-8 sm:px-8 sm:py-12 text-center">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <span class="text-4xl">🍽️</span>
+                    <h1 class="text-3xl sm:text-4xl font-bold">{{ __('Perfil de Cocina') }}</h1>
+                </div>
+                <p class="text-red-100 text-sm sm:text-base font-light">
+                    {{ __('Onboarding') }} #{{ $onboarding->id }}
+                </p>
+                <p class="text-red-50 text-sm mt-2 opacity-90">
+                    {{ __('Información del formulario completado') }}
+                </p>
+            </div>
         </div>
 
         <!-- CONTENT -->
-        <div style="padding: 40px; max-height: 70vh; overflow-y: auto;">
-            @if($form)
-                <div style="display: flex; flex-direction: column; gap: 30px;">
+        <div class="bg-white shadow-xl rounded-b-2xl">
+            <div class="p-6 sm:p-8 max-h-[70vh] overflow-y-auto">
+                @if($form)
+                    <div class="space-y-8">
 
-                    <!-- ESTADO DEL FORMULARIO -->
-                    <div style="
-                        background: #dcfce7;
-                        border: 2px solid #86efac;
-                        border-radius: 12px;
-                        padding: 20px;
-                        text-align: center;
-                    ">
-                        <h2 style="color: #15803d; margin: 0; font-size: 18px;">
-                            ✅ Formulario Completado
-                        </h2>
-                        <p style="margin: 5px 0 0 0; color: #166534; font-size: 14px;">
-                            Completado el {{ $form->completed_at?->format('d/m/Y H:i') ?? 'N/A' }}
-                        </p>
-                    </div>
+                        <!-- ESTADO DEL FORMULARIO -->
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-6 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-2">
+                                <span class="text-2xl">✅</span>
+                                <h2 class="text-xl font-bold text-green-700">
+                                    {{ __('Formulario Completado') }}
+                                </h2>
+                            </div>
+                            <p class="text-green-600 text-sm font-medium">
+                                {{ __('Completado el') }} {{ $form->completed_at?->format('d/m/Y H:i') ?? 'N/A' }}
+                            </p>
+                        </div>
 
                     <!-- SECCIÓN 1: INFORMACIÓN BÁSICA -->
                     <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
@@ -81,8 +56,8 @@
                             <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px;">👥 Cliente(s) Principal(es)</h3>
                             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                 @php
-                                    $clients = is_string($form->primary_clients) 
-                                        ? json_decode($form->primary_clients, true) 
+                                    $clients = is_string($form->primary_clients)
+                                        ? json_decode($form->primary_clients, true)
                                         : (array)$form->primary_clients;
                                 @endphp
                                 @foreach($clients ?? [] as $client)
@@ -169,11 +144,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $goals = is_string($form->household_goals) 
-                                    ? json_decode($form->household_goals, true) 
+                                $goals = is_string($form->household_goals)
+                                    ? json_decode($form->household_goals, true)
                                     : (array)$form->household_goals;
                             @endphp
-                            
+
                             @if(!empty($goals))
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     @foreach($goals as $goal)
@@ -228,11 +203,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $dietary = is_string($form->dietary_preferences) 
-                                    ? json_decode($form->dietary_preferences, true) 
+                                $dietary = is_string($form->dietary_preferences)
+                                    ? json_decode($form->dietary_preferences, true)
                                     : (array)$form->dietary_preferences;
                             @endphp
-                            
+
                             @if(!empty($dietary))
                                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
                                     @foreach($dietary as $pref)
@@ -281,11 +256,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $nutrition = is_string($form->nutrition_preferences) 
-                                    ? json_decode($form->nutrition_preferences, true) 
+                                $nutrition = is_string($form->nutrition_preferences)
+                                    ? json_decode($form->nutrition_preferences, true)
                                     : (array)$form->nutrition_preferences;
                             @endphp
-                            
+
                             @if(!empty($nutrition))
                                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
                                     @foreach($nutrition as $pref)
@@ -334,11 +309,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $avoid = is_string($form->foods_to_avoid) 
-                                    ? json_decode($form->foods_to_avoid, true) 
+                                $avoid = is_string($form->foods_to_avoid)
+                                    ? json_decode($form->foods_to_avoid, true)
                                     : (array)$form->foods_to_avoid;
                             @endphp
-                            
+
                             @if(!empty($avoid))
                                 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                     @foreach($avoid as $food)
@@ -376,11 +351,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $cuisines = is_string($form->favorite_cuisines) 
-                                    ? json_decode($form->favorite_cuisines, true) 
+                                $cuisines = is_string($form->favorite_cuisines)
+                                    ? json_decode($form->favorite_cuisines, true)
                                     : (array)$form->favorite_cuisines;
                             @endphp
-                            
+
                             @if(!empty($cuisines))
                                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
                                     @foreach($cuisines as $cuisine)
@@ -429,11 +404,11 @@
 
                         <div style="border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
                             @php
-                                $restaurants = is_string($form->favorite_restaurants) 
-                                    ? json_decode($form->favorite_restaurants, true) 
+                                $restaurants = is_string($form->favorite_restaurants)
+                                    ? json_decode($form->favorite_restaurants, true)
                                     : (array)$form->favorite_restaurants;
                             @endphp
-                            
+
                             @if(!empty($restaurants))
                                 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                     @foreach($restaurants as $restaurant)
@@ -472,7 +447,7 @@
                         " onmouseover="this.style.background='#e5e7eb'" onmouseout="this.style.background='#f3f4f6'">
                             ← Volver
                         </a>
-                        
+
                         <a href="javascript:window.print()" style="
                             display: block;
                             background: #dc2626;
@@ -520,7 +495,7 @@
             font-size: 12px;
         ">
             <p style="margin: 0;">
-                Onboarding #{{ $onboarding->id }} | 
+                Onboarding #{{ $onboarding->id }} |
                 Prospect: {{ $onboarding->prospect->email ?? 'N/A' }} |
                 {{ $form?->updated_at?->format('d/m/Y H:i') ?? 'N/A' }}
             </p>
@@ -532,7 +507,7 @@
     @keyframes spin {
         to { transform: rotate(360deg); }
     }
-    
+
     @media print {
         body {
             background: white;

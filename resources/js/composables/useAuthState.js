@@ -40,11 +40,11 @@ const getHeaders = (includeJson = true) => {
   const headers = {
     'Accept': 'application/json',
   }
-  
+
   if (includeJson) {
     headers['Content-Type'] = 'application/json'
   }
-  
+
   // Incluir CSRF token desde meta tag o variable de módulo
   const tokenElement = document.querySelector('meta[name="csrf-token"]')
   if (tokenElement?.content) {
@@ -52,7 +52,7 @@ const getHeaders = (includeJson = true) => {
   } else if (csrfToken.value) {
     headers['X-CSRF-TOKEN'] = csrfToken.value
   }
-  
+
   return headers
 }
 
@@ -60,23 +60,23 @@ const getHeaders = (includeJson = true) => {
 export const checkAuthentication = async (forceRefresh = false) => {
   const now = Date.now()
 
-  console.log(`[AUTH CHECK] forceRefresh=${forceRefresh}, cached=${hasCheckedOnce && (now - lastCheckTime) < CACHE_DURATION}`)
+//   console.log(`[AUTH CHECK] forceRefresh=${forceRefresh}, cached=${hasCheckedOnce && (now - lastCheckTime) < CACHE_DURATION}`)
 
   // Si forceRefresh está activado, saltarse caché completamente
   if (!forceRefresh && hasCheckedOnce && (now - lastCheckTime) < CACHE_DURATION) {
-    console.log(`[AUTH CHECK] Usando cache: isAuthenticated=${isAuthenticated.value}`)
+    // console.log(`[AUTH CHECK] Usando cache: isAuthenticated=${isAuthenticated.value}`)
     return isAuthenticated.value
   }
 
   // Si ya se está verificando, ESPERAR la promesa en lugar de retornar falso
   if (isCheckingAuth) {
-    console.log(`[AUTH CHECK] Ya se está verificando, esperando promesa...`)
+    // console.log(`[AUTH CHECK] Ya se está verificando, esperando promesa...`)
     return authCheckPromise
   }
 
   isCheckingAuth = true
   authCheckPromise = performAuthCheck(now)
-  
+
   try {
     return await authCheckPromise
   } finally {
@@ -88,14 +88,14 @@ export const checkAuthentication = async (forceRefresh = false) => {
 async function performAuthCheck(now) {
   try {
     const headers = getHeaders()
-    console.log(`[AUTH CHECK] Headers:`, Object.keys(headers))
+    // console.log(`[AUTH CHECK] Headers:`, Object.keys(headers))
 
     // Si hay token, agregarlo al header
     if (authToken.value) {
       headers['Authorization'] = `Bearer ${authToken.value}`
     }
 
-    console.log(`[AUTH CHECK] Fetching /api/user con credentials: include`)
+    // console.log(`[AUTH CHECK] Fetching /api/user con credentials: include`)
     const res = await fetch('/api/user', {
       method: 'GET',
       headers,
@@ -103,19 +103,19 @@ async function performAuthCheck(now) {
       cache: 'no-store' // No usar caché HTTP
     })
 
-    console.log(`[AUTH CHECK] Response status: ${res.status}`)
+    // console.log(`[AUTH CHECK] Response status: ${res.status}`)
 
     if (res.ok) {
       const userData = await safeReadJson(res)
       if (userData) {
-        console.log(`[AUTH CHECK] ✅ Autenticado como: ${userData.email}`)
+        // console.log(`[AUTH CHECK] ✅ Autenticado como: ${userData.email}`)
         currentUser.value = userData
         isAuthenticated.value = true
         lastCheckTime = Date.now()
         hasCheckedOnce = true
         return true
       } else {
-        console.log(`[AUTH CHECK] ❌ No se pudo leer JSON`)
+        // console.log(`[AUTH CHECK] ❌ No se pudo leer JSON`)
         isAuthenticated.value = false
         currentUser.value = null
         authToken.value = null
@@ -125,7 +125,7 @@ async function performAuthCheck(now) {
         return false
       }
     } else {
-      console.log(`[AUTH CHECK] ❌ No autenticado (status: ${res.status})`)
+    //   console.log(`[AUTH CHECK] ❌ No autenticado (status: ${res.status})`)
       isAuthenticated.value = false
       currentUser.value = null
       authToken.value = null
@@ -192,12 +192,12 @@ export const loginUser = async (email, password) => {
       })
     })
 
-    console.log(`[LOGIN] Response status: ${response.status}`)
+    // console.log(`[LOGIN] Response status: ${response.status}`)
 
     if (response.ok) {
       const data = await safeReadJson(response)
       if (data && data.user) {
-        console.log(`[LOGIN] ✅ Login exitoso como: ${data.user.email}`)
+        // console.log(`[LOGIN] ✅ Login exitoso como: ${data.user.email}`)
         // Usar datos del login response directamente
         currentUser.value = data.user
         isAuthenticated.value = true
@@ -219,7 +219,7 @@ export const loginUser = async (email, password) => {
       }
     }
 
-    console.log(`[LOGIN] ❌ Login fallido`)
+    // console.log(`[LOGIN] ❌ Login fallido`)
     isAuthenticated.value = false
     currentUser.value = null
     authToken.value = null

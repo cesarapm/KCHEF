@@ -13,16 +13,26 @@ class OrderService extends Model
 {
     use HasFactory;
 
-    public const STATUS_PENDIENTE_CONFIGURACION = 'pendiente_configuracion';
-    public const STATUS_MENU_ENVIADO = 'menu_enviado';
-    public const STATUS_PENDIENTE_SELECCION = 'pendiente_seleccion';
-    public const STATUS_SELECCION_CONFIRMADA = 'seleccion_confirmada';
-    public const STATUS_AGENDADO = 'agendado';
-    public const STATUS_EN_PREPARACION = 'en_preparacion';
-    public const STATUS_EN_PROCESO = 'en_proceso';
-    public const STATUS_EN_ENTREGA = 'en_entrega';
+    public const STATUS_PENDING_CONFIGURATION = 'pendiente_configuracion';
+    public const STATUS_MENU_SENT = 'menu_enviado';
+    public const STATUS_PENDING_SELECTION = 'pendiente_seleccion';
+    public const STATUS_SELECTION_CONFIRMED = 'seleccion_confirmada';
+    public const STATUS_SCHEDULED = 'agendado';
+    public const STATUS_IN_PREPARATION = 'en_preparacion';
+    public const STATUS_IN_PROGRESS = 'en_proceso';
+    public const STATUS_OUT_FOR_DELIVERY = 'en_entrega';
     public const STATUS_HOME_SERVICE = 'home_service';
-    public const STATUS_COMPLETADO = 'completado';
+    public const STATUS_COMPLETED = 'completado';
+
+    public const STATUS_PENDIENTE_CONFIGURACION = self::STATUS_PENDING_CONFIGURATION;
+    public const STATUS_MENU_ENVIADO = self::STATUS_MENU_SENT;
+    public const STATUS_PENDIENTE_SELECCION = self::STATUS_PENDING_SELECTION;
+    public const STATUS_SELECCION_CONFIRMADA = self::STATUS_SELECTION_CONFIRMED;
+    public const STATUS_AGENDADO = self::STATUS_SCHEDULED;
+    public const STATUS_EN_PREPARACION = self::STATUS_IN_PREPARATION;
+    public const STATUS_EN_PROCESO = self::STATUS_IN_PROGRESS;
+    public const STATUS_EN_ENTREGA = self::STATUS_OUT_FOR_DELIVERY;
+    public const STATUS_COMPLETADO = self::STATUS_COMPLETED;
 
     protected $fillable = [
         'order_id',
@@ -76,7 +86,7 @@ class OrderService extends Model
 
         static::updating(function (self $service): void {
             if ($service->isDirty('status')) {
-                $service->completed_at = $service->status === self::STATUS_COMPLETADO ? now() : null;
+                $service->completed_at = $service->status === self::STATUS_COMPLETED ? now() : null;
             }
         });
 
@@ -104,16 +114,16 @@ class OrderService extends Model
     public static function statusOptions(): array
     {
         return [
-            self::STATUS_PENDIENTE_CONFIGURACION => 'Pendiente de configuración',
-            self::STATUS_MENU_ENVIADO => 'Menú enviado',
-            self::STATUS_PENDIENTE_SELECCION => 'Pendiente de selección',
-            self::STATUS_SELECCION_CONFIRMADA => 'Selección confirmada',
-            self::STATUS_AGENDADO => 'Servicio agendado',
-            self::STATUS_EN_PREPARACION => 'En preparación',
-            self::STATUS_EN_PROCESO => 'En proceso',
-            self::STATUS_EN_ENTREGA => 'En entrega',
+            self::STATUS_PENDING_CONFIGURATION => 'Pending setup',
+            self::STATUS_MENU_SENT => 'Menu sent',
+            self::STATUS_PENDING_SELECTION => 'Pending selection',
+            self::STATUS_SELECTION_CONFIRMED => 'Selection confirmed',
+            self::STATUS_SCHEDULED => 'Scheduled service',
+            self::STATUS_IN_PREPARATION => 'In preparation',
+            self::STATUS_IN_PROGRESS => 'In progress',
+            self::STATUS_OUT_FOR_DELIVERY => 'Out for delivery',
             self::STATUS_HOME_SERVICE => 'Home service',
-            self::STATUS_COMPLETADO => 'Completado',
+            self::STATUS_COMPLETED => 'Completed',
         ];
     }
 

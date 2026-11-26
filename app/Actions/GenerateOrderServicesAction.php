@@ -30,7 +30,7 @@ class GenerateOrderServicesAction
                     ],
                     [
                         'title' => "Servicio {$serviceNumber}",
-                        'status' => OrderService::STATUS_PENDIENTE_CONFIGURACION,
+                        'status' => OrderService::STATUS_PENDING_CONFIGURATION,
                     ]
                 );
 

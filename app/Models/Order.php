@@ -55,10 +55,10 @@ class Order extends Model
     public static function paymentStatusOptions(): array
     {
         return [
-            self::PAYMENT_PENDING => 'Pendiente',
-            self::PAYMENT_CONFIRMED => 'Confirmado',
-            self::PAYMENT_FAILED => 'Fallido',
-            self::PAYMENT_REFUNDED => 'Reembolsado',
+            self::PAYMENT_PENDING => 'Pending',
+            self::PAYMENT_CONFIRMED => 'Confirmed',
+            self::PAYMENT_FAILED => 'Failed',
+            self::PAYMENT_REFUNDED => 'Refunded',
         ];
     }
 

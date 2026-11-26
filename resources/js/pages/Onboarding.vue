@@ -1,7 +1,7 @@
 <template>
   <div style="
     min-height: 100vh;
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    background: linear-gradient(135deg, #eef5eb 0%, #d6e6cf 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
     ">
       <!-- HEADER -->
       <div style="
-        background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #dc2626 100%);
+        background: linear-gradient(90deg, #4a6741 0%, #3a5530 50%, #4a6741 100%);
         color: white;
         padding: 40px 30px;
         text-align: center;
@@ -28,7 +28,7 @@
           font-size: 32px;
           font-weight: 700;
         ">
-          🍽️ Perfil de Cocina
+          🍽️ Cooking Profile
         </h1>
         <p style="
           margin: 0;
@@ -36,7 +36,7 @@
           opacity: 0.95;
           font-weight: 300;
         ">
-          Cuéntanos sobre tus preferencias alimenticias para personalizar tu experiencia
+          Tell us about your food preferences to personalize your experience
         </p>
       </div>
 
@@ -48,21 +48,21 @@
             display: inline-block;
             width: 50px;
             height: 50px;
-            border: 4px solid #fee2e2;
-            border-top: 4px solid #dc2626;
+            border: 4px solid #eef5eb;
+            border-top: 4px solid #4a6741;
             border-radius: 50%;
             animation: spin 1s linear infinite;
           "></div>
-          <p style="margin-top: 20px; color: #666;">Cargando formulario...</p>
+          <p style="margin-top: 20px; color: #666;">Loading form...</p>
         </div>
 
         <!-- ERROR STATE -->
         <div v-else-if="error" style="
-          background: #fee2e2;
-          border: 1px solid #fecaca;
+          background: #eef5eb;
+          border: 1px solid #d6e6cf;
           border-radius: 8px;
           padding: 16px;
-          color: #991b1b;
+          color: #2f4a28;
           margin-bottom: 20px;
         ">
           ⚠️ {{ error }}
@@ -70,28 +70,28 @@
 
         <!-- FORM CONTENT -->
         <div v-else style="display: flex; flex-direction: column; gap: 30px;">
-          <!-- SECCIÓN 1: INFORMACIÓN BÁSICA -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 1: INFORMACIÓN BÁSICA -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              👤 Información Básica
+              👤 Basic Information
             </h2>
 
             <!-- CLIENTES PRINCIPALES -->
-            <div style="margin-bottom: 30px; border: 2px solid #fee2e2; border-radius: 12px; padding: 20px; background: #fafaf9;">
+            <div style="margin-bottom: 30px; border: 2px solid #eef5eb; border-radius: 12px; padding: 20px; background: #fafaf9;">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-                <h3 style="margin: 0; color: #333; font-size: 16px;">👥 Cliente(s) Principal(es)</h3>
+                <h3 style="margin: 0; color: #333; font-size: 16px;">👥 Primary Client(s)</h3>
                 <button
                   @click="addPrimaryClient"
                   type="button"
                   style="
-                    background: #dc2626;
+                    background: #4a6741;
                     color: white;
                     border: none;
                     padding: 8px 16px;
@@ -101,10 +101,10 @@
                     font-weight: 600;
                     transition: all 0.3s ease;
                   "
-                  @mouseenter="$event.target.style.backgroundColor = '#b91c1c'"
-                  @mouseleave="$event.target.style.backgroundColor = '#dc2626'"
+                  @mouseenter="$event.target.style.backgroundColor = '#2f4a28'"
+                  @mouseleave="$event.target.style.backgroundColor = '#4a6741'"
                 >
-                  + Agregar Cliente
+                  + Add Client
                 </button>
               </div>
 
@@ -127,12 +127,12 @@
                     margin-bottom: 6px;
                     font-size: 13px;
                   ">
-                    Nombre *
+                    Name *
                   </label>
                   <input
                     v-model="client.name"
                     type="text"
-                    placeholder="Ej: Juan"
+                    placeholder="Ex: John"
                     style="
                       width: 100%;
                       padding: 10px 12px;
@@ -142,20 +142,20 @@
                       box-sizing: border-box;
                       transition: all 0.3s ease;
                     "
-                    @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                    @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                     @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                   />
                 </div>
 
-                <!-- Botón Eliminar -->
+                <!-- Delete button -->
                 <button
                   @click="removePrimaryClient(idx)"
                   type="button"
                   v-if="primaryClients.length > 1"
                   style="
-                    background: #fee2e2;
-                    color: #dc2626;
-                    border: 1px solid #fecaca;
+                    background: #eef5eb;
+                    color: #4a6741;
+                    border: 1px solid #d6e6cf;
                     padding: 10px 16px;
                     border-radius: 6px;
                     cursor: pointer;
@@ -163,10 +163,10 @@
                     font-weight: 600;
                     transition: all 0.3s ease;
                   "
-                  @mouseenter="$event.target.style.backgroundColor = '#fecaca'"
-                  @mouseleave="$event.target.style.backgroundColor = '#fee2e2'"
+                  @mouseenter="$event.target.style.backgroundColor = '#d6e6cf'"
+                  @mouseleave="$event.target.style.backgroundColor = '#eef5eb'"
                 >
-                  ✕ Eliminar
+                  ✕ Remove
                 </button>
               </div>
             </div>
@@ -181,7 +181,7 @@
                   margin-bottom: 8px;
                   font-size: 14px;
                 ">
-                  Fecha de inicio
+                  Start date
                 </label>
                 <input
                   v-model="form.start_date"
@@ -195,7 +195,7 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
@@ -210,12 +210,12 @@
                 margin-bottom: 8px;
                 font-size: 14px;
               ">
-                Dirección del hogar
+                Household address
               </label>
               <input
                 v-model="form.household_address"
                 type="text"
-                placeholder="Ej: 123 Main St, Nueva York, NY 10001"
+                placeholder="Ex: 123 Main St, New York, NY 10001"
                 style="
                   width: 100%;
                   padding: 12px 14px;
@@ -225,7 +225,7 @@
                   box-sizing: border-box;
                   transition: all 0.3s ease;
                 "
-                @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                 @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
               />
             </div>
@@ -240,7 +240,7 @@
                   margin-bottom: 8px;
                   font-size: 14px;
                 ">
-                  Adultos en el hogar
+                  Adults in household
                 </label>
                 <input
                   v-model.number="form.number_of_adults"
@@ -255,7 +255,7 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
@@ -267,7 +267,7 @@
                   margin-bottom: 8px;
                   font-size: 14px;
                 ">
-                  Niños en el hogar
+                  Kids in household
                 </label>
                 <input
                   v-model.number="form.number_of_kids"
@@ -282,7 +282,7 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
@@ -294,12 +294,12 @@
                   margin-bottom: 8px;
                   font-size: 14px;
                 ">
-                  Edades de los niños
+                  Kids ages
                 </label>
                 <input
                   v-model="form.kids_ages"
                   type="text"
-                  placeholder="Ej: 5, 8, 12"
+                  placeholder="Ex: 5, 8, 12"
                   style="
                     width: 100%;
                     padding: 12px 14px;
@@ -309,24 +309,24 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
             </div>
           </div>
 
-          <!-- SECCIÓN 2: OBJETIVOS DEL HOGAR -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 2: OBJETIVOS DEL HOGAR -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              🎯 Objetivos del Hogar
+              🎯 Household Goals
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
               <label v-for="goal in householdGoalsOptions" :key="goal" style="
@@ -349,14 +349,14 @@
                     width: 18px;
                     height: 18px;
                     cursor: pointer;
-                    accent-color: #dc2626;
+                    accent-color: #4a6741;
                   "
                 />
                 <span style="font-size: 14px; color: #333;">{{ goal }}</span>
               </label>
             </div>
 
-            <!-- Campo de texto libre para "otros" objetivos -->
+            <!-- Free text field for "other" goals -->
             <div style="margin-top: 20px;">
               <label style="
                 display: block;
@@ -365,12 +365,12 @@
                 margin-bottom: 8px;
                 font-size: 14px;
               ">
-                ✍️ Otros objetivos
+                ✍️ Other goals
               </label>
               <input
                 v-model="form.household_goals_other"
                 type="text"
-                placeholder="Especifica otros objetivos que tengas..."
+                placeholder="Specify any additional goals..."
                 style="
                   width: 100%;
                   padding: 12px 14px;
@@ -383,23 +383,23 @@
                   color: #333;
                   background-color: #fff;
                 "
-                @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                 @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
               />
             </div>
           </div>
 
-          <!-- SECCIÓN 3: PREFERENCIAS DIETÉTICAS -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 3: PREFERENCIAS DIETÉTICAS -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              🥗 Preferencias Dietéticas
+              🥗 Dietary Preferences
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
               <label v-for="diet in dietaryPreferencesOptions" :key="diet" style="
@@ -422,14 +422,14 @@
                     width: 18px;
                     height: 18px;
                     cursor: pointer;
-                    accent-color: #dc2626;
+                    accent-color: #4a6741;
                   "
                 />
                 <span style="font-size: 14px; color: #333;">{{ diet }}</span>
               </label>
             </div>
 
-            <!-- Campo de texto libre para preferencias dietéticas adicionales -->
+            <!-- Free text field for additional dietary preferences -->
             <div style="margin-top: 20px;">
               <label style="
                 display: block;
@@ -438,12 +438,12 @@
                 margin-bottom: 8px;
                 font-size: 14px;
               ">
-                ✍️ Otras preferencias dietéticas
+                ✍️ Other dietary preferences
               </label>
               <input
                 v-model="form.dietary_preferences_other"
                 type="text"
-                placeholder="Especifica otras preferencias dietéticas..."
+                placeholder="Specify additional dietary preferences..."
                 style="
                   width: 100%;
                   padding: 12px 14px;
@@ -456,23 +456,23 @@
                   color: #333;
                   background-color: #fff;
                 "
-                @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                 @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
               />
             </div>
           </div>
 
-          <!-- SECCIÓN 4: PREFERENCIAS NUTRICIONALES -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 4: PREFERENCIAS NUTRICIONALES -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              💪 Preferencias Nutricionales
+              💪 Nutrition Preferences
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
               <label v-for="nutrition in nutritionPreferencesOptions" :key="nutrition" style="
@@ -495,14 +495,14 @@
                     width: 18px;
                     height: 18px;
                     cursor: pointer;
-                    accent-color: #dc2626;
+                    accent-color: #4a6741;
                   "
                 />
                 <span style="font-size: 14px; color: #333;">{{ nutrition }}</span>
               </label>
             </div>
 
-            <!-- Campo de texto libre para preferencias nutricionales adicionales -->
+            <!-- Free text field for additional nutrition preferences -->
             <div style="margin-top: 20px;">
               <label style="
                 display: block;
@@ -511,12 +511,12 @@
                 margin-bottom: 8px;
                 font-size: 14px;
               ">
-                ✍️ Otras preferencias nutricionales
+                ✍️ Other nutrition preferences
               </label>
               <input
                 v-model="form.nutrition_preferences_other"
                 type="text"
-                placeholder="Especifica otras preferencias nutricionales..."
+                placeholder="Specify additional nutrition preferences..."
                 style="
                   width: 100%;
                   padding: 12px 14px;
@@ -529,23 +529,23 @@
                   color: #333;
                   background-color: #fff;
                 "
-                @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                 @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
               />
             </div>
           </div>
 
-          <!-- SECCIÓN 5: ALIMENTOS A EVITAR -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 5: ALIMENTOS A EVITAR -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              ❌ Alimentos a Evitar
+              ❌ Foods to Avoid
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(1fr)); gap: 15px;">
               <div v-for="(item, index) in foodsToAvoid" :key="index">
@@ -556,12 +556,12 @@
                   margin-bottom: 6px;
                   font-size: 12px;
                 ">
-                  Alimento {{ index + 1 }}
+                  Food {{ index + 1 }}
                 </label>
                 <input
                   v-model="foodsToAvoid[index]"
                   type="text"
-                  placeholder="Ej: Maní"
+                  placeholder="Ex: Peanuts"
                   style="
                     width: 100%;
                     padding: 12px 14px;
@@ -571,24 +571,24 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
             </div>
           </div>
 
-          <!-- SECCIÓN 6: CUISINAS FAVORITAS -->
-          <div style="border-bottom: 2px solid #fee2e2; padding-bottom: 30px;">
+          <!-- SECTION 6: CUISINAS FAVORITAS -->
+          <div style="border-bottom: 2px solid #eef5eb; padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              🍜 Cuisinas Favoritas
+              🍜 Favorite Cuisines
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
               <label v-for="cuisine in favoritesCuisinesOptions" :key="cuisine" style="
@@ -611,14 +611,14 @@
                     width: 18px;
                     height: 18px;
                     cursor: pointer;
-                    accent-color: #dc2626;
+                    accent-color: #4a6741;
                   "
                 />
                 <span style="font-size: 14px; color: #333;">{{ cuisine }}</span>
               </label>
             </div>
 
-            <!-- Campo de texto libre para cuisinas favoritas adicionales -->
+            <!-- Free text field for additional favorite cuisines -->
             <div style="margin-top: 20px;">
               <label style="
                 display: block;
@@ -627,12 +627,12 @@
                 margin-bottom: 8px;
                 font-size: 14px;
               ">
-                ✍️ Otras cuisinas favoritas
+                ✍️ Other favorite cuisines
               </label>
               <input
                 v-model="form.favorite_cuisines_other"
                 type="text"
-                placeholder="Especifica otras cuisinas que te gusten..."
+                placeholder="Specify other cuisines you like..."
                 style="
                   width: 100%;
                   padding: 12px 14px;
@@ -645,23 +645,23 @@
                   color: #333;
                   background-color: #fff;
                 "
-                @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                 @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
               />
             </div>
           </div>
 
-          <!-- SECCIÓN 7: RESTAURANTES FAVORITOS -->
+          <!-- SECTION 7: RESTAURANTES FAVORITOS -->
           <div style="padding-bottom: 30px;">
             <h2 style="
-              color: #dc2626;
+              color: #4a6741;
               font-size: 22px;
               margin: 0 0 20px 0;
               display: flex;
               align-items: center;
               gap: 10px;
             ">
-              🍽️ Restaurantes Favoritos
+              🍽️ Favorite Restaurants
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(1fr)); gap: 15px;">
               <div v-for="(item, index) in restaurantFavorites" :key="index">
@@ -672,12 +672,12 @@
                   margin-bottom: 6px;
                   font-size: 12px;
                 ">
-                  Restaurante {{ index + 1 }}
+                  Restaurant {{ index + 1 }}
                 </label>
                 <input
                   v-model="restaurantFavorites[index]"
                   type="text"
-                  placeholder="Ej: Chipotle"
+                  placeholder="Ex: Chipotle"
                   style="
                     width: 100%;
                     padding: 12px 14px;
@@ -687,7 +687,7 @@
                     box-sizing: border-box;
                     transition: all 0.3s ease;
                   "
-                  @focus="$event.target.style.borderColor = '#dc2626'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
+                  @focus="$event.target.style.borderColor = '#4a6741'; $event.target.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)'"
                   @blur="$event.target.style.borderColor = '#ddd'; $event.target.style.boxShadow = 'none'"
                 />
               </div>
@@ -710,19 +710,19 @@
           :disabled="saving"
           style="
             padding: 12px 24px;
-            border: 2px solid #dc2626;
+            border: 2px solid #4a6741;
             background: white;
-            color: #dc2626;
+            color: #4a6741;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
           "
-          @mouseenter="$event.target.style.backgroundColor = '#fee2e2'"
+          @mouseenter="$event.target.style.backgroundColor = '#eef5eb'"
           @mouseleave="$event.target.style.backgroundColor = 'white'"
         >
-          {{ saving ? '⏳ Guardando...' : '💾 Guardar Borrador' }}
+          {{ saving ? '⏳ Saving...' : '💾 Save Draft' }}
         </button>
 
         <button
@@ -730,7 +730,7 @@
           :disabled="saving"
           style="
             padding: 12px 32px;
-            background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+            background: linear-gradient(90deg, #4a6741 0%, #3a5530 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -742,7 +742,7 @@
           @mouseenter="$event.target.style.transform = 'translateY(-2px)'; $event.target.style.boxShadow = '0 10px 20px rgba(220, 38, 38, 0.2)'"
           @mouseleave="$event.target.style.transform = 'translateY(0)'; $event.target.style.boxShadow = 'none'"
         >
-          {{ saving ? '⏳ Completando...' : '✨ Completar Perfil' }}
+          {{ saving ? '⏳ Completing...' : '✨ Complete Profile' }}
         </button>
       </div>
 
@@ -789,7 +789,7 @@
             overflow-y: auto;
             box-shadow: 0 30px 80px rgba(220, 38, 38, 0.3);
             animation: slideDown 0.3s ease;
-            border-top: 6px solid #dc2626;
+            border-top: 6px solid #4a6741;
           " @click.stop>
             <div style="
               display: flex;
@@ -804,25 +804,25 @@
               <div>
                 <h2 style="
                   margin: 0 0 8px 0;
-                  color: #dc2626;
+                  color: #4a6741;
                   font-size: 24px;
                   font-weight: 800;
                 ">
-                  Campos Incompletos
+                  Incomplete Fields
                 </h2>
                 <p style="
                   margin: 0;
                   color: #999;
                   font-size: 13px;
                 ">
-                  Completa estos campos para continuar
+                  Complete these fields to continue
                 </p>
               </div>
             </div>
 
             <div style="
-              background: #fef2f2;
-              border: 2px solid #fee2e2;
+              background: #f3f8f1;
+              border: 2px solid #eef5eb;
               border-radius: 10px;
               padding: 20px;
               margin-bottom: 30px;
@@ -838,16 +838,16 @@
                   gap: 12px;
                   padding: 12px 16px;
                   background: white;
-                  border-left: 4px solid #dc2626;
+                  border-left: 4px solid #4a6741;
                   border-radius: 6px;
-                  color: #991b1b;
+                  color: #2f4a28;
                   font-size: 15px;
                   font-weight: 600;
                 ">
                   <span style="
                     width: 24px;
                     height: 24px;
-                    background: #dc2626;
+                    background: #4a6741;
                     color: white;
                     border-radius: 50%;
                     display: flex;
@@ -875,7 +875,7 @@
                 font-size: 13px;
                 line-height: 1.5;
               ">
-                💡 <strong>Tip:</strong> Todos los campos son obligatorios. Scrollea hacia arriba en el formulario para encontrar los campos que faltan.
+                💡 <strong>Tip:</strong> All fields are required. Scroll up in the form to find the missing fields.
               </p>
             </div>
 
@@ -900,14 +900,14 @@
                 @mouseenter="$event.target.style.backgroundColor = '#e5e7eb'"
                 @mouseleave="$event.target.style.backgroundColor = '#f3f4f6'"
               >
-                ← Volver a completar
+                ← Go back and complete
               </button>
               <button
                 @click="scrollToFirstIncompleteField"
                 style="
                   flex: 1;
                   padding: 14px 20px;
-                  background: #dc2626;
+                  background: #4a6741;
                   color: white;
                   border: none;
                   border-radius: 8px;
@@ -916,10 +916,10 @@
                   transition: all 0.3s ease;
                   font-size: 15px;
                 "
-                @mouseenter="$event.target.style.backgroundColor = '#b91c1c'"
-                @mouseleave="$event.target.style.backgroundColor = '#dc2626'"
+                @mouseenter="$event.target.style.backgroundColor = '#2f4a28'"
+                @mouseleave="$event.target.style.backgroundColor = '#4a6741'"
               >
-                📍 Ir al primer campo faltante
+                📍 Go to the first missing field
               </button>
             </div>
           </div>
@@ -969,71 +969,71 @@ const primaryClients = ref([
 const foodsToAvoid = ref(['', '', '', '', ''])
 const restaurantFavorites = ref(['', '', '', ''])
 
-// Opciones de formulario
+// Form options
 const householdGoalsOptions = [
-  'Ahorrar tiempo',
-  'Comer más saludable',
-  'Perder peso',
-  'Ganar músculo',
-  'Cenas en familia',
-  'Más variedad',
-  'Menos comida rápida',
-  'Conveniencia',
-  'Preparación de comidas',
-  'Amigable para niños',
-  'Necesidades dietéticas especiales'
+  'Save time',
+  'Eat healthier',
+  'Lose weight',
+  'Build muscle',
+  'Family dinners',
+  'More variety',
+  'Less fast food',
+  'Convenience',
+  'Meal prep',
+  'Kid-friendly',
+  'Special dietary needs'
 ]
 
 const dietaryPreferencesOptions = [
-  'Mediterráneo',
-  'Alto en proteína',
-  'Bajo en carbohidratos',
+  'Mediterranean',
+  'High protein',
+  'Low carb',
   'Keto',
   'Paleo',
-  'Vegetariano',
+  'Vegetarian',
   'Vegano',
-  'Pescatariano',
-  'Sin lácteos',
-  'Sin gluten',
-  'Orgánico',
+  'Pescatarian',
+  'Dairy-free',
+  'Gluten-free',
+  'Organic',
 ]
 
 const nutritionPreferencesOptions = [
-  'Bajo en sodio',
-  'Sin azúcar añadido',
-  'Alto en proteína',
-  'Bajo en grasas',
-  'Saludable para el corazón',
-  'Granos integrales',
-  'Carnes magras',
-  'Res alimentada con pasto',
-  'Mariscos salvajes',
-  'Productos orgánicos',
-  'Sin aceites de semillas',
-  'Aguacate/Aceite de oliva',
+  'Low sodium',
+  'No added sugar',
+  'High protein',
+  'Low fat',
+  'Heart healthy',
+  'Whole grains',
+  'Lean meats',
+  'Grass-fed beef',
+  'Wild-caught seafood',
+  'Organic products',
+  'No seed oils',
+  'Avocado/Olive oil',
 ]
 
 const favoritesCuisinesOptions = [
-  'Italiana',
-  'Mexicana',
-  'Mediterránea',
-  'Griega',
-  'Americana',
-  'Francesa',
-  'Española',
-  'Japonesa',
-  'China',
-  'Tailandesa',
-  'Coreana',
+  'Italian',
+  'Mexican',
+  'Mediterranean',
+  'Greek',
+  'American',
+  'French',
+  'Spanish',
+  'Japanese',
+  'Chinese',
+  'Thai',
+  'Korean',
   'India',
-  'Oriente Medio',
-  'Vietnamita',
-  'Sureña',
+  'Middle Eastern',
+  'Vietnamese',
+  'Southern',
   'BBQ',
-  'Mariscos',
+  'Seafood',
 ]
 
-// Métodos
+// Methods
 const toggleArrayItem = (fieldName, item) => {
   const arr = form.value[fieldName]
   if (!arr) {
@@ -1046,7 +1046,7 @@ const toggleArrayItem = (fieldName, item) => {
       arr.push(item)
     }
   }
-  console.log(`${fieldName} actualizado:`, form.value[fieldName])
+//   console.log(`${fieldName} updated:`, form.value[fieldName])
 }
 
 const addPrimaryClient = () => {
@@ -1055,6 +1055,68 @@ const addPrimaryClient = () => {
 
 const removePrimaryClient = (index) => {
   primaryClients.value.splice(index, 1)
+}
+
+const getCookieValue = (name) => {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
+  return match ? decodeURIComponent(match[1]) : ''
+}
+
+const ensureCsrfToken = async (forceRefresh = false) => {
+  if (!forceRefresh) {
+    const metaToken = document.querySelector('meta[name="csrf-token"]')?.content
+    if (metaToken) {
+      return metaToken
+    }
+
+    const cookieToken = getCookieValue('XSRF-TOKEN')
+    if (cookieToken) {
+      return cookieToken
+    }
+  }
+
+  const csrfResponse = await fetch('/sanctum/csrf-cookie', {
+    credentials: 'include',
+    headers: { 'Accept': 'application/json' },
+  })
+
+  if (!csrfResponse.ok) {
+    throw new Error('Unable to initialize secure session. Please refresh the page and try again.')
+  }
+
+  const refreshedToken = getCookieValue('XSRF-TOKEN')
+  if (!refreshedToken) {
+    throw new Error('Secure session token was not generated. Please refresh and try again.')
+  }
+
+  return refreshedToken
+}
+
+const csrfFetch = async (url, options = {}) => {
+  const send = async (forceRefresh = false) => {
+    const csrfToken = await ensureCsrfToken(forceRefresh)
+    const headers = {
+      'Accept': 'application/json',
+      ...options.headers,
+      'X-CSRF-TOKEN': csrfToken,
+      'X-XSRF-TOKEN': csrfToken,
+    }
+
+    return fetch(url, {
+      ...options,
+      credentials: 'include',
+      headers,
+    })
+  }
+
+  let response = await send(false)
+
+  // Retry once when the session rotated and the token became stale.
+  if (response.status === 419) {
+    response = await send(true)
+  }
+
+  return response
 }
 
 const readApiError = async (response, fallbackMessage) => {
@@ -1067,12 +1129,12 @@ const readApiError = async (response, fallbackMessage) => {
 
   const text = await response.text()
   if (text && text.trim().startsWith('<!DOCTYPE')) {
-    // Extraer información del error HTML si es posible
+    // Extract HTML error information if possible
     console.error('HTML Error Response:', text.substring(0, 500))
-    return `${fallbackMessage} (respuesta HTML del servidor - Status: ${response.status})`
+    return `${fallbackMessage} (HTML server response - Status: ${response.status})`
   }
 
-  // Si es texto plano
+  // If it's plain text
   if (text) {
     console.error('Error Text:', text.substring(0, 200))
     return text.substring(0, 200)
@@ -1083,9 +1145,9 @@ const readApiError = async (response, fallbackMessage) => {
 
 const scrollToFirstIncompleteField = () => {
   showValidationError.value = false
-  
+
   setTimeout(() => {
-    // Scroll al inicio del formulario
+    // Scroll to the top of the form
     const formContainer = document.querySelector('[style*="max-width"]')
     if (formContainer) {
       formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -1098,36 +1160,36 @@ const loadForm = async () => {
     loading.value = true
     error.value = null
 
-    // Obtener el onboarding_id del usuario autenticado
+    // Get onboarding_id from the authenticated user
     const userResponse = await fetch('/api/user', {
       credentials: 'include',
       headers: { 'Accept': 'application/json' }
     })
     if (!userResponse.ok) {
-      throw new Error('No autorizado - Por favor inicia sesión')
+      throw new Error('Unauthorized - Please log in')
     }
     const userData = await userResponse.json()
 
     if (!userData.prospect_id) {
-      throw new Error('No se encontró el prospect. Por favor intenta de nuevo.')
+      throw new Error('Prospect not found. Please try again.')
     }
 
-    // Obtener el onboarding existente
+    // Get existing onboarding
     const onboardingResponse = await fetch(`/api/prospects/${userData.prospect_id}/onboarding`, {
       credentials: 'include',
       headers: { 'Accept': 'application/json' }
     })
     if (!onboardingResponse.ok) {
-      const message = await readApiError(onboardingResponse, 'Error cargando onboarding')
+      const message = await readApiError(onboardingResponse, 'Error loading onboarding')
       throw new Error(message)
     }
     const onboardingData = await onboardingResponse.json()
 
     if (!onboardingData.onboarding) {
-      throw new Error('No se encontró el onboarding')
+      throw new Error('Onboarding not found')
     }
 
-    // Obtener el formulario
+    // Get form
     const formResponse = await fetch(`/api/onboarding/${onboardingData.onboarding.id}/form`, {
       credentials: 'include',
       headers: { 'Accept': 'application/json' }
@@ -1135,13 +1197,13 @@ const loadForm = async () => {
     if (formResponse.ok) {
       const formData = await formResponse.json()
       if (formData.form) {
-        // Llenar el formulario con datos existentes
+        // Populate the form with existing data
         form.value = {
           ...form.value,
           ...formData.form,
         }
 
-        // Restaurar arrays separados
+        // Restore separated arrays
         if (formData.form.primary_clients && formData.form.primary_clients.length > 0) {
           primaryClients.value = formData.form.primary_clients
         }
@@ -1155,7 +1217,7 @@ const loadForm = async () => {
     }
   } catch (err) {
     console.error('Error loading form:', err)
-    error.value = err.message || 'Error cargando formulario'
+    error.value = err.message || 'Error loading form'
   } finally {
     loading.value = false
   }
@@ -1168,33 +1230,33 @@ const saveDraft = async () => {
 const validateForm = () => {
   const errors = []
 
-  // Validar campos requeridos
+  // Validate required fields
   if (!form.value.household_address || form.value.household_address.trim() === '') {
-    errors.push('📍 Dirección del hogar')
+    errors.push('📍 Household address')
   }
-  
+
   if (!form.value.number_of_adults || form.value.number_of_adults <= 0) {
-    errors.push('👥 Número de adultos')
+    errors.push('👥 Number of adults')
   }
-  
+
   if (form.value.number_of_kids > 0 && (!form.value.kids_ages || form.value.kids_ages.trim() === '')) {
-    errors.push('👶 Edades de los niños')
+    errors.push('👶 Kids ages')
   }
-  
+
   if (!form.value.household_goals || form.value.household_goals.length === 0) {
-    errors.push('🎯 Objetivos del hogar (selecciona al menos uno)')
+    errors.push('🎯 Household goals (select at least one)')
   }
-  
+
   if (!form.value.dietary_preferences || form.value.dietary_preferences.length === 0) {
-    errors.push('🥗 Preferencias dietéticas (selecciona al menos una)')
+    errors.push('🥗 Dietary preferences (select at least one)')
   }
-  
+
   if (!form.value.nutrition_preferences || form.value.nutrition_preferences.length === 0) {
-    errors.push('💪 Preferencias nutricionales (selecciona al menos una)')
+    errors.push('💪 Nutrition preferences (select at least one)')
   }
-  
+
   if (!form.value.favorite_cuisines || form.value.favorite_cuisines.length === 0) {
-    errors.push('🍜 Cuisinas favoritas (selecciona al menos una)')
+    errors.push('🍜 Favorite cuisines (select at least one)')
   }
 
   return errors
@@ -1205,29 +1267,29 @@ const submitForm = async (complete = true) => {
     saving.value = true
     error.value = null
 
-    // Validar formulario antes de enviar
+    // Validate form before submit
     const errors = validateForm()
-    console.log('Errores de validación:', errors)
+    // console.log('Validation errors:', errors)
     if (errors.length > 0) {
       validationErrors.value = errors
       showValidationError.value = true
       saving.value = false
-      console.log('Modal mostrado con errores:', validationErrors.value)
+    //   console.log('Error modal shown:', validationErrors.value)
       return
     }
 
-    // Obtener el onboarding_id
+    // Get onboarding_id
     const userResponse = await fetch('/api/user', {
       credentials: 'include',
       headers: { 'Accept': 'application/json' }
     })
     if (!userResponse.ok) {
-      throw new Error('No autorizado')
+      throw new Error('Unauthorized')
     }
     const userData = await userResponse.json()
 
     if (!userData.prospect_id) {
-      throw new Error('No se encontró el prospect')
+      throw new Error('Prospect not found')
     }
 
     const onboardingResponse = await fetch(`/api/prospects/${userData.prospect_id}/onboarding`, {
@@ -1235,13 +1297,13 @@ const submitForm = async (complete = true) => {
       headers: { 'Accept': 'application/json' }
     })
     if (!onboardingResponse.ok) {
-      const message = await readApiError(onboardingResponse, 'Error obteniendo onboarding')
+      const message = await readApiError(onboardingResponse, 'Error getting onboarding')
       throw new Error(message)
     }
     const onboardingData = await onboardingResponse.json()
     const onboardingId = onboardingData.onboarding.id
 
-    // Preparar datos - agregar todos los campos del formulario
+    // Prepare payload with all form fields
     const submitData = {
       household_goals: form.value.household_goals || [],
       household_goals_other: form.value.household_goals_other || '',
@@ -1263,66 +1325,57 @@ const submitForm = async (complete = true) => {
       status: complete ? 'completed' : 'draft',
     }
 
-    console.log('Enviando datos:', submitData)
+    // console.log('Sending data:', submitData)
 
-    // Guardar formulario
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content
-    console.log('CSRF Token:', csrfToken ? 'presente' : 'no encontrado')
-    
-    const response = await fetch(`/api/onboarding/${onboardingId}/form`, {
+    // Save form
+    const response = await csrfFetch(`/api/onboarding/${onboardingId}/form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': csrfToken || '',
       },
-      credentials: 'include',
       body: JSON.stringify(submitData),
     })
 
-    console.log('Response status:', response.status)
-    console.log('Response headers:', {
-      contentType: response.headers.get('content-type'),
-      status: response.status,
-    })
+    // console.log('Response status:', response.status)
+    // console.log('Response headers:', {
+    //   contentType: response.headers.get('content-type'),
+    //   status: response.status,
+    // })
 
     if (!response.ok) {
-      const message = await readApiError(response, 'Error guardando formulario')
+      const message = await readApiError(response, 'Error saving form')
       throw new Error(message)
     }
 
     const result = await response.json()
 
     if (complete) {
-      // Completar onboarding
-      const completeResponse = await fetch(`/api/onboarding/${onboardingId}/form/complete`, {
+      // Complete onboarding
+      const completeResponse = await csrfFetch(`/api/onboarding/${onboardingId}/form/complete`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.content || '',
         },
-        credentials: 'include',
       })
 
       if (completeResponse.ok) {
-        successMessage.value = '¡Perfil completado con éxito!'
+        successMessage.value = 'Profile completed successfully!'
         setTimeout(() => {
           router.push('/dashboard')
         }, 1500)
       } else {
-        const message = await readApiError(completeResponse, 'Error completando onboarding')
+        const message = await readApiError(completeResponse, 'Error completing onboarding')
         throw new Error(message)
       }
     } else {
-      successMessage.value = '✅ Borrador guardado'
+      successMessage.value = '✅ Draft saved'
       setTimeout(() => {
         successMessage.value = null
       }, 2000)
     }
   } catch (err) {
     console.error('Error submitting form:', err)
-    error.value = err.message || 'Error guardando formulario'
+    error.value = err.message || 'Error saving form'
   } finally {
     saving.value = false
   }

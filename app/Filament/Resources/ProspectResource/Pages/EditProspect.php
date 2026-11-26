@@ -15,7 +15,7 @@ class EditProspect extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            // Botón Cambiar Estado
+            // Change status button
             Actions\Action::make('change_status')
                 ->label('Change Status')
                 ->color('warning')
@@ -24,13 +24,13 @@ class EditProspect extends EditRecord
                     \Filament\Forms\Components\Select::make('new_status')
                         ->label('New Status')
                         ->options([
-                            'pendiente' => 'Pendiente',
-                            'aprobado' => 'Aprobado',
-                            'enlace_enviado' => 'Enlace Enviado',
-                            'cliente_registrado' => 'Cliente Registrado',
-                            'en_onboarding' => 'En Onboarding',
-                            'completado' => 'Completado',
-                            'rechazado' => 'Rechazado',
+                            'pendiente' => 'Pending',
+                            'aprobado' => 'Approved',
+                            'enlace_enviado' => 'Link Sent',
+                            'cliente_registrado' => 'Client Registered',
+                            'en_onboarding' => 'In Onboarding',
+                            'completado' => 'Completed',
+                            'rechazado' => 'Rejected',
                         ])
                         ->required(),
                 ])
@@ -48,15 +48,15 @@ class EditProspect extends EditRecord
 
                     Notification::make()
                         ->success()
-                        ->title("Estado actualizado a: $newStatus")
+                        ->title("Status updated to: $newStatus")
                         ->send();
                     $this->redirect(ProspectResource::getUrl('index'));
                 })
                 ->requiresConfirmation(),
 
-            // Botón Aceptar/Aprobar
+            // Accept/approve button
             Actions\Action::make('approve')
-                ->label('✅ Aceptar')
+                ->label('✅ Approve')
                 ->color('success')
                 ->icon('heroicon-m-check-circle')
                 ->visible(fn () => $this->record->status === 'pendiente')
@@ -70,13 +70,13 @@ class EditProspect extends EditRecord
                     ]);
                     Notification::make()
                         ->success()
-                        ->title('Prospect aprobado correctamente')
+                        ->title('Prospect approved successfully')
                         ->send();
                     $this->redirect(ProspectResource::getUrl('index'));
                 })
                 ->requiresConfirmation(),
 
-            // Botón Generar Invitación
+            // Generate invitation button
             Actions\Action::make('generate_token')
                 ->label('Generate Invitation')
                 ->color('info')
@@ -96,25 +96,25 @@ class EditProspect extends EditRecord
                     ]);
                     Notification::make()
                         ->success()
-                        ->title('Token generado y email enviado')
+                        ->title('Token generated and email sent')
                         ->send();
                     $this->redirect(ProspectResource::getUrl('edit', [$this->record->id]));
                 })
                 ->requiresConfirmation(),
 
-            // Botón Ver/Copiar Link de Registro
+            // View/copy registration link button
             Actions\Action::make('show_registration_link')
-                ->label('📋 Link de Registro')
+                ->label('📋 Registration Link')
                 ->color('gray')
                 ->icon('heroicon-m-document-text')
                 ->visible(fn () => $this->record->status === 'enlace_enviado' && $this->record->registrationTokens()->whereNull('used_at')->exists())
-                ->modalHeading('📋 Compartir Link de Registro')
-                ->modalSubheading('Selecciona y copia el contenido que deseas compartir')
-                ->modalSubmitActionLabel('Cerrar')
+                ->modalHeading('📋 Share Registration Link')
+                ->modalSubheading('Select and copy the content you want to share')
+                ->modalSubmitActionLabel('Close')
                 ->modalCancelActionLabel('')
                 ->form([
                     \Filament\Forms\Components\TextInput::make('registration_url')
-                        ->label('🔗 Link de Registro')
+                        ->label('🔗 Registration Link')
                         ->default(function () {
                             $token = $this->record->registrationTokens()->whereNull('used_at')->first();
                             return $token ? url('/completar-registro/' . $token->token) : '';
@@ -129,18 +129,18 @@ class EditProspect extends EditRecord
                         ->helperText('Address to send the link'),
 
                     \Filament\Forms\Components\Textarea::make('email_text')
-                        ->label('📝 Mensaje Sugerido')
+                        ->label('📝 Suggested Message')
                         ->default(function () {
                             $token = $this->record->registrationTokens()->whereNull('used_at')->first();
                             $url = $token ? url('/completar-registro/' . $token->token) : '';
-                            return "Hola " . $this->record->full_name . ",\n\nTu invitación para completar el registro en CHEF está lista.\n\nHaz clic en el siguiente link para continuar:\n" . $url . "\n\nEste link es válido por 7 días.\n\nSaludos,\nEquipo CHEF";
+                            return "Hello " . $this->record->full_name . ",\n\nYour invitation to complete registration in CHEF is ready.\n\nClick the following link to continue:\n" . $url . "\n\nThis link is valid for 7 days.\n\nRegards,\nCHEF Team";
                         })
                         ->disabled()
                         ->rows(6)
-                        ->helperText('Copiar y enviar por email, WhatsApp o SMS'),
+                        ->helperText('Copy and send via email, WhatsApp, or SMS'),
                 ])
                 ->action(function () {
-                    // Modal solo visualiza
+                    // Display-only modal
                 }),
 
             Actions\DeleteAction::make(),
@@ -149,7 +149,7 @@ class EditProspect extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        // Log cambios de estado
+        // Log status changes
         if ($this->record->status !== $data['status']) {
             $this->record->activityLogs()->create([
                 'action' => 'status_changed',
